@@ -45,7 +45,7 @@ const spec1 = {
   
   $schema: "https://vega.github.io/schema/vega-lite/v5.json",
   data: {
-    url: "https://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv"
+    url: "https://cors.io/?https://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv"
   } ,
   title: {"text":"Speed distribution Western northbound"},
   mark: "bar",
