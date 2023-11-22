@@ -41,11 +41,22 @@
 //     },
 //   },
 // };
+
+//var data = $.csv.toObjects("WesternNBspeedInd.csv")
+//<script src="jquery-3.7.1.min.js"></script>
+const data1 = fetch("WesternNBspeedInd.csv")
+//fetch('sample-url.csv')
+  .then((response) => response.text())//response.json()) or response.text()
+  .then((data) => console.log(data));
+console.log(typeof data1)
+console.log(data1)
+
 const spec1 = {
   
   $schema: "https://vega.github.io/schema/vega-lite/v5.json",
   data: {
-    url: "https://cors.io/?https://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv"
+    url: "./WesternNBspeedInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+    
   } ,
   title: {"text":"Speed distribution Western northbound"},
   mark: "bar",
