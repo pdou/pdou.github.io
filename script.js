@@ -210,8 +210,8 @@ data: {
 "config": {
   "boxplot": {"extent": 50, "size": 100}
 },
-"width": 800,
-"height": 300
+"width": 400,
+"height": 150
 },
 {
 "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
@@ -230,41 +230,273 @@ data: {
 "config": {
   "boxplot": {"extent": 50, "size": 100}
 },
-"width": 800,
-"height": 300
+"width": 400,
+"height": 150
 }       
     ]}
 vegaEmbed("#vis4", spec4);
 
-const spec5 = {
-  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-  description: "Google's stock price over time.",
-  data: {
-    url: "https://cdn.jsdelivr.net/npm/vega-datasets@latest/data/stocks.csv",
-  },
-  transform: [{ filter: "datum.symbol==='GOOG'" }],
-  mark: "line",
-  encoding: {
-    x: { field: "date", type: "temporal" },
-    y: { field: "price", type: "quantitative" },
-  },
-};
+const spec5 =
+//  {
+//   $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+//   description: "Google's stock price over time.",
+//   data: {
+//     url: "https://cdn.jsdelivr.net/npm/vega-datasets@latest/data/stocks.csv",
+//   },
+//   transform: [{ filter: "datum.symbol==='GOOG'" }],
+//   mark: "line",
+//   encoding: {
+//     x: { field: "date", type: "temporal" },
+//     y: { field: "price", type: "quantitative" },
+//   },
+// }
+
+{
+  
+  "params": [
+  { "name": "markSize", "value": 25,
+    "bind": {"input": "range", "min": 25, "max": 100, "step": 1}},
+  {"name": "pts", "select": "point"}
+  
+    
+],
+  "vconcat":[
+      {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text":"Speeds, Western northbound (September 5th - 6th)","subtitle": "re-size below"},
+"mark": {"type": "point", "shape": "triangle-up","size": 25, "filled": true},
+data: {
+  url: "./WesternNBspeedtimelatInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+  
+} ,
+"encoding": {
+  "x": {"field": "time", "type": "temporal","scale": {"domain": ['2023-09-05T19:50:24.000', '2023-09-06T15:50:29.000']}},
+  "y": {"field": "start_latitude", "type": "quantitative","scale": {"domain": [41.70, 42.0]}},
+  "color": {"field": "speed", "type": "quantitative","scale": {"scheme": "viridis"},"legend": {"orient": "left"}}
+},
+
+
+"width": 450,
+"height": 250},
+      {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text":"Speeds, Western northbound (September 5th - 6th)","subtitle": "re-size below"},
+"mark": {"type": "point", "shape": "triangle-up","size": {"expr": "markSize"}, "filled": true},
+data: {
+  url: "./WesternNBspeedtimelatInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+  
+} ,
+"encoding": {
+  "x": {"field": "time", "type": "temporal","scale": {"domain": ['2023-09-05T19:50:24.000', '2023-09-06T15:50:29.000']}},
+  "y": {"field": "start_latitude", "type": "quantitative","scale": {"domain": [41.70, 42.0]}},
+  "color": {"field": "speed", "type": "quantitative","scale": {"scheme": "viridis"},"legend": {"orient": "left"}}
+},
+
+
+"width": 450,
+"height": 250}
+  ]};
 vegaEmbed("#vis5", spec5);
 
-const spec6 = {
-  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-  description: "Stock prices of 5 Tech Companies over Time.",
+const spec6 = 
+// {
+//   $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+//   description: "Stock prices of 5 Tech Companies over Time.",
+//   data: {
+//     url: "https://cdn.jsdelivr.net/npm/vega-datasets@latest/data/stocks.csv",
+//   },
+//   mark: {
+//     type: "line",
+//     point: true,
+//   },
+//   encoding: {
+//     x: { timeUnit: "year", field: "date" },
+//     y: { aggregate: "mean", field: "price", type: "quantitative" },
+//     color: { field: "symbol", type: "nominal" },
+//   },
+// }
+{
+  
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "vconcat": [{
+        "title": {"text":"Speeds (Lat v Time), Western southbound (September 5th - 6th)","subtitle": "make selection to see timed speed average"},
+    "selection": {
+    "brush": {
+      "type": "interval"}
+  },
+  "mark": {"type": "point", "shape": "triangle-down", "filled": true},
   data: {
-    url: "https://cdn.jsdelivr.net/npm/vega-datasets@latest/data/stocks.csv",
+    url: "./WesternSBspeedtimelatInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+    
+  } ,
+  "encoding": {
+    "x": {"field": "time", "type": "temporal","scale": {"domain": ['2023-09-05T19:50:24.000', '2023-09-06T15:50:29.000']}},
+    "y": {"field": "start_latitude", "type": "quantitative","scale": {"domain": [41.70, 42.0]}},
+    "color": {"field": "speed", "type": "quantitative","scale": {"scheme": "viridis"},"legend": {"orient": "left"}}
   },
-  mark: {
-    type: "line",
-    point: true,
+  
+    "size": {
+      "condition": {
+        "selection": "paintbrush", "value": 300
+      },
+      "value": 50
+    },
+  "width": 450,
+  "height": 250
+},
+ {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+     "title": {"text":"Average Speeds (per given Time), Western southbound (September 5th - 6th)"},
+  "mark": "bar",
+  data: {
+    url: "./WesternSBspeedtimelatInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+    
+  } ,
+  "encoding": {
+    "y": {"aggregate":"mean", "field": "speed", "type": "quantitative"},
+    
+    "x": {"field": "time", "type": "temporal","scale": {"domain":{"selection": "brush"}}}
   },
-  encoding: {
-    x: { timeUnit: "year", field: "date" },
-    y: { aggregate: "mean", field: "price", type: "quantitative" },
-    color: { field: "symbol", type: "nominal" },
+  
+  "config": {
+    "boxplot": {"extent": 50, "size": 100}
   },
-};
+  "width": 400,
+  "height": 150
+  }  
+    ]
+        }
+;
 vegaEmbed("#vis6", spec6);
+
+const spec7 = 
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "params": [
+  { "name": "opacityMin", "value": .5,
+    "bind": {"input": "range", "min": 0, "max": 1, "step": .05}},
+      { "name": "opacityMax", "value": .5,
+    "bind": {"input": "range", "min": 0, "max": 1, "step": .05}},
+      { "name": "opacityMean", "value": .5,
+    "bind": {"input": "range", "min": 0, "max": 1, "step": .05}},
+  
+    
+],
+  "title": {"text":"Hourly Speed Layers (Min, Max, Mean), Irving Park eastbound (September 5th - 6th)"},
+  "layer":[
+{
+"mark": { "type":"rule","opacity": {"expr": "opacityMin"}},
+data: {
+  url: "./IrvingParkEBspeedtimelatInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+  
+} ,
+"encoding": {
+  "y": {"aggregate":"min","field": "speed", "type": "quantitative"},
+  
+  "x": {"field": "time", "type": "temporal","scale": {"domain": ['2023-09-05T19:50:24.000', '2023-09-06T15:50:29.000']}}
+},
+
+"config": {
+  "boxplot": {"extent": 50, "size": 100}
+},
+"width": 400,
+"height": 150
+},
+{
+"$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+"mark": { "type":"point","color": "red","opacity": {"expr": "opacityMax"}},
+data: {
+  url: "./IrvingParkEBspeedtimelatInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+  
+} ,
+"encoding": {
+  "y": {"aggregate":"max","field": "speed", "type": "quantitative"},
+  
+  "x": {"field": "time", "type": "temporal","scale": ['2023-09-05T19:50:24.000', '2023-09-06T15:50:29.000']}
+},
+
+"config": {
+  "boxplot": {"extent": 50, "size": 100}
+},
+"width": 400,
+"height": 150,
+"color": {"field": "symbol", "type": "nominal"}
+} ,
+      
+{
+"$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+"mark": {"type": "line", "color": "green","opacity": {"expr": "opacityMean"}},
+data: {
+  url: "./IrvingParkEBspeedtimelatInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+  
+} ,
+"encoding": {
+  "y": {"aggregate":"mean","field": "speed", "type": "quantitative"},
+  
+  "x": {"field": "time", "type": "temporal","scale": ['2023-09-05T19:50:24.000', '2023-09-06T15:50:29.000']}
+},
+
+"config": {
+  "boxplot": {"extent": 50, "size": 100}
+},
+"width": 400,
+"height": 150,
+"color": {"field": "symbol", "type": "nominal"}
+}        
+      
+    ]}
+;
+vegaEmbed("#vis7", spec7);
+
+const spec8 = 
+
+{
+  "title": {"text":"Max speeds, all direction city-wide (September 5th - 6th)"},
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "mark": {"type": "point", "filled": true},
+  data: {
+    url: "./100KspeedtimelatlongInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+    
+  } ,
+  "encoding": {
+    "y": {"field": "start_latitude", "type": "quantitative","scale": {"domain": [41.65, 42.05]}},
+    "x": {"field": "start_longitude", "type": "quantitative","scale": {"domain": [-87.86, -87.54]}},
+    "color": {"field": "speed","legend": {"orient": "left"},"aggregate": "max", "type": "quantitative","scale": {"scheme": "viridis"}}
+  },
+  
+  "width": 450,
+  "height": 250
+};
+vegaEmbed("#vis8", spec8);
+
+const spec10 = 
+
+{
+  "title": {"text":"Max speeds, city-wide, separated by direction (September 5th - 6th)"},
+  
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  data: {
+    url: "./100KspeedtimelatlongdirectionInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+    
+  } ,
+
+  "facet": {"column": {"field": "direction"}},
+
+  "spec": {
+  "mark": {"type": "rect","width":7,"height":7},
+  
+  
+  "encoding": {
+    "y": {"field": "start_latitude", "type": "quantitative","scale": {"domain": [41.65, 42.05]}},
+    "x": {"field": "start_longitude", "type": "quantitative","scale": {"domain": [-87.86, -87.54]}},
+    "color": {"field": "speed","legend": {"orient": "left"},"aggregate": "max", "type": "quantitative","scale": {"scheme": "viridis"}
+             
+             }
+  },
+  
+  "width": 450,
+  "height": 250
+  }
+};
+vegaEmbed("#vis10", spec10);
