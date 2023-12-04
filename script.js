@@ -449,31 +449,31 @@ data: {
 ;
 vegaEmbed("#vis1", spec1);
 
-const spec8 = 
+// const spec88 = 
 
-{
-  "title": {"text":"Max speeds, all direction city-wide (September 5th - 6th)"},
-  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "mark": {"type": "point", "filled": true},
-  data: {
-    url: "./100KspeedtimelatlongInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
+// {
+//   "title": {"text":"Max speeds, all direction city-wide (September 5th - 6th)"},
+//   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+//   "mark": {"type": "point", "filled": true},
+//   data: {
+//     url: "./100KspeedtimelatlongInd.csv"//http://github.com/pdou/pdou.github.io/blob/main/WesternNBspeedInd.csv
     
-  } ,
-  "encoding": {
-    "y": {"field": "start_latitude", "type": "quantitative","scale": {"domain": [41.65, 42.05]}},
-    "x": {"field": "start_longitude", "type": "quantitative","scale": {"domain": [-87.86, -87.54]}},
-    "color": {"field": "speed","legend": {"orient": "left"},"aggregate": "max", "type": "quantitative","scale": {"scheme": "viridis"}}
-  },
+//   } ,
+//   "encoding": {
+//     "y": {"field": "start_latitude", "type": "quantitative","scale": {"domain": [41.65, 42.05]}},
+//     "x": {"field": "start_longitude", "type": "quantitative","scale": {"domain": [-87.86, -87.54]}},
+//     "color": {"field": "speed","legend": {"orient": "left"},"aggregate": "max", "type": "quantitative","scale": {"scheme": "viridis"}}
+//   },
   
-  "width": 450,
-  "height": 250
-};
-vegaEmbed("#vis8", spec8);
+//   "width": 450,
+//   "height": 250
+// };
+// vegaEmbed("#vis88", spec88);
 
-const spec5 = 
+const spec7 = 
 
 {
-  "title": {"text":"Max speeds MPH, city-wide, separated by direction (September 5th - 6th)"},
+  "title": {"text":"Max speeds MPH, city-wide, separated by direction (September 5th - 6th)","subtitle": "scroll right to see all directions"},
   
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   data: {
@@ -499,4 +499,4 @@ const spec5 =
   "height": 250
   }
 };
-vegaEmbed("#vis5", spec5);
+vegaEmbed("#vis7", spec7);
